@@ -1,0 +1,4 @@
+numpy
+seaborn
+pyecharts
+notebook
