@@ -1,9 +1,7 @@
 # Curriculum
 ## 课程设计总概
 
-
-
-
+该项目以网络爬虫进行数据采集，利用pandas和numpy对数据进行清洗。随后，使用Tableau仪表盘对清洗后的数据进行可视化呈现。对从数据中提取的信息，进行知识图谱的构建，并实现QA问答系统。接下来，基于数据属性，对宝可梦多轮对话大模型进行微调。最终阶段，项目利用宝可梦的图片进行CLIP跨模态探索，进一步优化模型性能。这整个过程融合了数据采集、清洗、可视化、知识图谱构建、QA系统、模型微调和跨模态探索，形成一个全面而多层次的数据科学项目。
 
 ## 精灵宝可梦爬虫 :video_game:
 
@@ -33,8 +31,6 @@
 - 为数据文件添加详细的文档和注释，使其他人可以理解和使用数据。
 
 欢迎随时扩展和改进这个项目，以满足你的需求和兴趣。祝你在这个精灵宝可梦爬虫项目中取得成功！ :tada:
-
-
 
 
 
@@ -139,14 +135,14 @@
 
 首先需要下载ChatGLM3-6B 官方仓库：
 
-```
+```git
 git clone https://github.com/THUDM/ChatGLM3
 cd ChatGLM3
 ```
 
 然后使用 pip 安装依赖：
 
-```
+```python
 pip install -r requirements.txt
 ```
 
@@ -156,7 +152,7 @@ pip install -r requirements.txt
 
 运行示例需要 `python>=3.10`，除基础的 `torch` 依赖外，示例代码运行还需要依赖
 
-```
+```python
 pip install requirements.txt
 ```
 
@@ -164,7 +160,7 @@ pip install requirements.txt
 
  进入THUDM文件夹，[huggingface](https://huggingface.co/THUDM/chatglm3-6b?clone=true)  下载  
 
-```
+```bash
 初始化git lfs：
 curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash
 sudo apt-get install git-lfs
@@ -188,7 +184,7 @@ git clone https://huggingface.co/THUDM/chatglm3-6b
 
 我们的数据格式遵循 ChatGLM3 对话格式约定。请参照以下格式整理您的对话数据：
 
-```
+```json
 jsonCopy code[
   {
     "conversations": [
@@ -208,7 +204,7 @@ jsonCopy code[
 
 以下脚本提供了微调模型的参考方式。
 
-```
+```bash
 ./scripts/finetune_ds_multiturn.sh  # 全量微调
 ./scripts/finetune_pt_multiturn.sh  # P-Tuning v2 微调
 ```
@@ -226,7 +222,7 @@ jsonCopy code[
 
 使用以下命令进行推理验证：
 
-```
+```python
   python inference.py     --pt-checkpoint /path/to/your/model     --model THUDM/chatglm3-6b     --tokenizer THUDM/chatglm3-6b     --pt-pre-seq-len 128     --max-new-tokens 128 \
 ```
 
@@ -336,7 +332,7 @@ print("Label probs:", probs)  # [[1.268734e-03 5.436878e-02 6.795761e-04 9.43682
 
 下载本项目后, 请创建新的文件夹 `${DATAPATH}` 以存放数据集、预训练ckpt、以及finetune产生的模型日志&ckpt。推荐工作区目录结构如下：
 
-```
+```plaintext
 Chinese-CLIP/
 ├── run_scripts/
 │   ├── muge_finetune_vit-b-16_rbt-base.sh   #官方是多卡，我这里修改为单卡
